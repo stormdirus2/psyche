@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[43,)"
+issueTrackerURL = "https://github.com/stormdirus2/psyche/issues"
+license = "MPL-2"
+
+[[mods]]
+modId = "psyche"
+version = "${version}"
+displayName = "Pscyhe"
+authors = "SciRave"
+description = '''
+An ambitious AI overhaul mod striving for eventual Rimworld-ification
+'''
+#logoFile = ""
+
+[[dependencies.psyche]]
+modId = "forge"
+mandatory = true
+versionRange = "[43,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.psyche]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.19.2,)"
+ordering = "NONE"
+side = "BOTH"
+
+#[[dependencies.examplemod]]
+#modId = "architectury"
+#mandatory = true
+#versionRange = "[6.2.43,)"
+#ordering = "AFTER"
+#side = "BOTH"

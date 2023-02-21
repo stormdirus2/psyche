@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "group": "net.scirave",
+    "id": "psyche",
+    "version": "${version}",
+    "name": "Psyche",
+    "description": "An ambitious AI overhaul mod striving for eventual Rimworld-ification",
+    "authors": ["SciRave"],
+    "contact": {
+      "sources": "https://github.com/stormdirus2/psyche",
+      "issues": "https://github.com/stormdirus2/psyche/issues"
+    },
+    "license": "MPL-2",
+    "icon": "assets/psyche/icon.png",
+    "intermediate_mappings": "net.fabricmc:intermediary",
+    "environment": "*",
+    "entrypoints": {
+      "init": [
+        "net.scirave.psyche.quilt.PsycheQuilt"
+      ]
+    },
+    "depends": [
+      {
+        "id": "quilt_loader",
+        "version": "*"
+      },
+      {
+        "id": "quilt_base",
+        "version": "*"
+      },
+      {
+        "id": "minecraft",
+        "version": ">=1.19.2"
+      }
+    ]
+  }
+}

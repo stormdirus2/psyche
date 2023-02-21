@@ -1,0 +1,26 @@
+{
+  "schemaVersion": 1,
+  "id": "psyche",
+  "version": "${version}",
+  "name": "Psyche",
+  "description": "An ambitious AI overhaul mod striving for eventual Rimworld-ification",
+  "authors": [
+    "SciRave"
+  ],
+  "contact": {
+    "sources": "https://github.com/stormdirus2/psyche",
+    "issues": "https://github.com/stormdirus2/psyche/issues"
+  },
+  "license": "MPL-2",
+  "icon": "assets/psyche/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "net.scirave.psyche.fabric.PsycheFabric"
+    ]
+  },
+  "depends": {
+    "fabric": "*",
+    "minecraft": ">=1.19.2"
+  }
+}
