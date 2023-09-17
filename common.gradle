@@ -1,5 +1,5 @@
 apply plugin: 'maven-publish'
-apply plugin: 'com.github.hierynomus.license'
+apply plugin: 'org.cadixdev.licenser'
 apply plugin: 'fabric-loom'
 apply plugin: 'io.github.juuxel.loom-quiltflower'
 apply plugin: 'com.replaymod.preprocess'
@@ -40,8 +40,8 @@ dependencies {
 //	include(modImplementation(fabricApi.module("fabric-resource-loader-v0", project.fabric_api_version)))
 }
 
-String MIXIN_CONFIG_PATH = 'template_mod.mixins.json'
-String LANG_DIR = 'assets/template_mod/lang'
+String MIXIN_CONFIG_PATH = "${project.mixin_config_path}"
+String LANG_DIR = "${project.lang_dir}"
 JavaVersion JAVA_COMPATIBILITY
 if (mcVersion >= 11800) {
 	JAVA_COMPATIBILITY = JavaVersion.VERSION_17
@@ -130,40 +130,19 @@ jar {
 	}
 }
 
-// https://github.com/hierynomus/license-gradle-plugin
 license {
-	// use "gradle licenseFormat" to apply license headers
-	header = rootProject.file('HEADER.txt')
-	include '**/*.java'
-	skipExistingHeaders = true
 
-	headerDefinitions {
-		// ref: https://github.com/mathieucarbou/license-maven-plugin/blob/4c42374bb737378f5022a3a36849d5e23ac326ea/license-maven-plugin/src/main/java/com/mycila/maven/plugin/license/header/HeaderType.java#L48
-		// modification: add a newline at the end
-		SLASHSTAR_STYLE_NEWLINE {
-			firstLine = "/*"
-			beforeEachLine = " * "
-			endLine = " */" + System.lineSeparator()
-			afterEachLine = ""
-			skipLinePattern = null
-			firstLineDetectionPattern = "(\\s|\\t)*/\\*.*\$"
-			lastLineDetectionPattern = ".*\\*/(\\s|\\t)*\$"
-			allowBlankLines = false
-			isMultiline = true
-			padLines = false
-		}
-	}
-	mapping {
-		java = 'SLASHSTAR_STYLE_NEWLINE'
-	}
+	header = rootProject.file("LICENSE_HEADER")
+
+	include '**/*.java'
+
 	ext {
-		name = project.mod_name
-		author = 'Fallen_Breath'
-		year = Calendar.getInstance().get(Calendar.YEAR).toString()
+		year = Year.now()
+		displayName = rootProject.display_name
+		owners = rootProject.owners
 	}
+
 }
-classes.dependsOn licenseFormatMain
-testClasses.dependsOn licenseFormatTest
 
 // configure the maven publication
 publishing {

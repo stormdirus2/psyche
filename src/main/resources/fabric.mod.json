@@ -4,25 +4,25 @@
   "version": "${version}",
 
   "name": "${name}",
-  "description": "Template for my fabric mods",
+  "description": "An attempted overhaul for Minecraft AI.",
   "authors": [
-    "Fallen_Breath"
+    "SciRave"
   ],
   "contact": {
     "homepage": "https://modrinth.com",
     "sources": "https://github.com/Fallen-Breath/fabric-mod-template"
   },
 
-  "icon": "assets/template_mod/icon.png",
+  "icon": "assets/pscyhe/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "me.fallenbreath.template_mod.TemplateMod"
+      "net.scirave.psyche.Pscyhe"
     ]
   },
   "mixins": [
-    "template_mod.mixins.json"
+    "psyche.mixins.json"
   ],
 
   "depends": {
