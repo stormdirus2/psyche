@@ -10,15 +10,15 @@
   ],
   "contact": {
     "homepage": "https://modrinth.com",
-    "sources": "https://github.com/Fallen-Breath/fabric-mod-template"
+    "sources": "https://github.com/stormdirus2/psyche"
   },
 
-  "icon": "assets/pscyhe/icon.png",
+  "icon": "assets/psyche/icon.png",
 
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.scirave.psyche.Pscyhe"
+      "net.scirave.psyche.Psyche"
     ]
   },
   "mixins": [

@@ -4,7 +4,9 @@
   "package": "net.scirave.psyche.mixins",
   "compatibilityLevel": "${compatibility_level}",
   "mixins": [
-    "MinecraftServerMixin"
+    "MixinEntityDataExtension",
+    "MixinLivingHurt",
+    "MixinCreeperTest"
   ],
   "client": [
   ],

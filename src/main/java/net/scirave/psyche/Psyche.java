@@ -29,30 +29,46 @@
  * -------------------------------------------------------------------
  */
 
-package net.scirave.psyche.mixins;
+package net.scirave.psyche;
 
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.server.MinecraftServer;
-import org.spongepowered.asm.mixin.Mixin;
-import org.spongepowered.asm.mixin.injection.At;
-import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
+import net.fabricmc.api.ModInitializer;
+import net.fabricmc.loader.api.FabricLoader;
+import net.fabricmc.loader.api.metadata.ModMetadata;
+import net.scirave.psyche.config.PsycheConfig;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.util.logging.Logger;
+import java.nio.file.Path;
 
-@Mixin(MinecraftServer.class)
-public abstract class MinecraftServerMixin
+public class Psyche implements ModInitializer
 {
-	@Inject(
-			method = "runServer",
-			at = @At("HEAD")
-	)
-	private void onRun(CallbackInfo ci)
-	{
-		Logger.getLogger("TEST").info("WOW. IT'S WORKING!");
 
-		NbtCompound nbt = new NbtCompound();
-		nbt.putString("key", "value");
-		System.err.println("nbt: " + nbt);
+	// Basic info
+	public static final String MOD_ID = "psyche";
+	public static String MOD_VERSION = "unreachable";
+	public static String MOD_NAME = "unreachable";
+
+	// Logging
+	public static final Logger LOGGER = LogManager.getLogger(MOD_ID);
+
+	// Config
+	public static Path CONFIG_FILE;
+	public static PsycheConfig CONFIG;
+
+
+	@Override
+	public void onInitialize()
+	{
+		// Retrive info. From the template mod.
+		ModMetadata metadata = FabricLoader.getInstance().getModContainer(MOD_ID).orElseThrow(RuntimeException::new).getMetadata();
+		MOD_NAME = metadata.getName();
+		MOD_VERSION = metadata.getVersion().getFriendlyString();
+
+		// Get config dir
+		CONFIG_FILE = FabricLoader.getInstance().getConfigDir().resolve(MOD_ID + ".json");
+		CONFIG = PsycheConfig.readConfig(CONFIG_FILE);
+
+		// Write config. Make sure the user has the most up-to-date defaults and the like!
+		PsycheConfig.writeConfig(CONFIG_FILE, CONFIG);
 	}
 }
